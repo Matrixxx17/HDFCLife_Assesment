@@ -244,7 +244,7 @@ export default function AgentDashboard() {
       <nav className="border-b border-slate-800 bg-slate-900/40 backdrop-blur-md px-6 py-4 flex items-center justify-between sticky top-0 z-45">
         <div className="flex items-center gap-2.5">
           <div className="w-9 h-9 rounded-lg bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white font-extrabold shadow-lg shadow-sky-500/20">
-            IF
+            HI
           </div>
           <div>
             <span className="font-extrabold text-white text-lg tracking-tight">HDFCINSURA</span>
@@ -493,8 +493,8 @@ export default function AgentDashboard() {
                           type="button"
                           onClick={() => setCalcTerm(t)}
                           className={`py-1.5 rounded-lg border text-xs font-semibold transition-all ${calcTerm === t
-                              ? "border-sky-500 bg-sky-950/20 text-sky-300"
-                              : "border-slate-800 bg-slate-950/20 text-slate-500 hover:text-white"
+                            ? "border-sky-500 bg-sky-950/20 text-sky-300"
+                            : "border-slate-800 bg-slate-950/20 text-slate-500 hover:text-white"
                             }`}
                         >
                           {t}Y
@@ -515,8 +515,8 @@ export default function AgentDashboard() {
                           type="button"
                           onClick={() => setCalcFrequency(freq)}
                           className={`py-1.5 rounded-lg border text-xs font-semibold transition-all ${calcFrequency === freq
-                              ? "border-sky-500 bg-sky-950/20 text-sky-300"
-                              : "border-slate-800 bg-slate-950/20 text-slate-500 hover:text-white"
+                            ? "border-sky-500 bg-sky-950/20 text-sky-300"
+                            : "border-slate-800 bg-slate-950/20 text-slate-500 hover:text-white"
                             }`}
                         >
                           {freq}

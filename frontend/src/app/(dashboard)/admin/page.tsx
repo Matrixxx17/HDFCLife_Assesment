@@ -213,7 +213,7 @@ export default function AdminDashboard() {
       <nav className="border-b border-slate-800 bg-slate-900/40 backdrop-blur-md px-6 py-4 flex items-center justify-between sticky top-0 z-40">
         <div className="flex items-center gap-2.5">
           <div className="w-9 h-9 rounded-lg bg-gradient-to-tr from-teal-500 to-indigo-600 flex items-center justify-center text-white font-extrabold shadow-lg shadow-teal-500/20">
-            IF
+            HI
           </div>
           <div>
             <span className="font-extrabold text-white text-lg tracking-tight">HDFCINSURA</span>
