@@ -24,7 +24,7 @@ export default function LandingPage() {
     return (
       <div className="min-h-screen bg-navy-950 flex flex-col items-center justify-center text-slate-100">
         <Activity className="w-10 h-10 text-teal-400 animate-spin mb-4" />
-        <p className="text-sm tracking-widest text-slate-400">LOADING INSUREFLOW...</p>
+        <p className="text-sm tracking-widest text-slate-400">LOADING HDFCINSURA...</p>
       </div>
     );
   }
@@ -49,7 +49,7 @@ export default function LandingPage() {
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-4">
             Welcome to{" "}
             <span className="bg-gradient-to-r from-teal-400 via-sky-400 to-indigo-400 bg-clip-text text-transparent">
-              InsureFlow
+              HDFCINSURA
             </span>
           </h1>
           <p className="text-base md:text-lg text-slate-400 max-w-xl mx-auto">

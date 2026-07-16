@@ -1,6 +1,6 @@
-# InsureFlow: Insurance Policy Management System
+# HDFCINSURA: Insurance Policy Management System
 
-InsureFlow is a production-grade, full-stack Insurance Policy Management System built using the MERN stack with TypeScript. The platform features strict role-based access control (RBAC), database-level ownership isolation, real-time premium calculations, and automated PII masking serialization to ensure maximum privacy and security.
+HDFCINSURA is a production-grade, full-stack Insurance Policy Management System built using the MERN stack with TypeScript. The platform features strict role-based access control (RBAC), database-level ownership isolation, real-time premium calculations, and automated PII masking serialization to ensure maximum privacy and security.
 
 ---
 

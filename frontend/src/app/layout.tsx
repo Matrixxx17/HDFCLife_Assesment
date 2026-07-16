@@ -3,7 +3,7 @@ import "./globals.css";
 import { Providers } from "../components/providers";
 
 export const metadata: Metadata = {
-  title: "InsureFlow | Insurance Policy Management System",
+  title: "HDFCINSURA | Insurance Policy Management System",
   description: "A secure, role-based platform for insurance onboarding and policy issuance, built with modern tech.",
 };
 

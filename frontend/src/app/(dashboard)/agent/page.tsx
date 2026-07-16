@@ -247,7 +247,7 @@ export default function AgentDashboard() {
             IF
           </div>
           <div>
-            <span className="font-extrabold text-white text-lg tracking-tight">InsureFlow</span>
+            <span className="font-extrabold text-white text-lg tracking-tight">HDFCINSURA</span>
             <span className="text-[10px] bg-sky-500/10 border border-sky-500/20 text-sky-400 font-semibold px-2 py-0.5 rounded-full ml-2">
               AGENT
             </span>
@@ -424,9 +424,8 @@ export default function AgentDashboard() {
           <div className="flex border-b border-slate-800">
             <button
               onClick={() => setActiveTab("calculator")}
-              className={`flex-1 py-2.5 font-bold text-xs uppercase tracking-wider transition-all relative ${
-                activeTab === "calculator" ? "text-sky-400" : "text-slate-400 hover:text-white"
-              }`}
+              className={`flex-1 py-2.5 font-bold text-xs uppercase tracking-wider transition-all relative ${activeTab === "calculator" ? "text-sky-400" : "text-slate-400 hover:text-white"
+                }`}
             >
               <div className="flex items-center justify-center gap-1.5">
                 <Calculator className="w-3.5 h-3.5" /> Live Quote Engine
@@ -493,11 +492,10 @@ export default function AgentDashboard() {
                           key={t}
                           type="button"
                           onClick={() => setCalcTerm(t)}
-                          className={`py-1.5 rounded-lg border text-xs font-semibold transition-all ${
-                            calcTerm === t
+                          className={`py-1.5 rounded-lg border text-xs font-semibold transition-all ${calcTerm === t
                               ? "border-sky-500 bg-sky-950/20 text-sky-300"
                               : "border-slate-800 bg-slate-950/20 text-slate-500 hover:text-white"
-                          }`}
+                            }`}
                         >
                           {t}Y
                         </button>
@@ -516,11 +514,10 @@ export default function AgentDashboard() {
                           key={freq}
                           type="button"
                           onClick={() => setCalcFrequency(freq)}
-                          className={`py-1.5 rounded-lg border text-xs font-semibold transition-all ${
-                            calcFrequency === freq
+                          className={`py-1.5 rounded-lg border text-xs font-semibold transition-all ${calcFrequency === freq
                               ? "border-sky-500 bg-sky-950/20 text-sky-300"
                               : "border-slate-800 bg-slate-950/20 text-slate-500 hover:text-white"
-                          }`}
+                            }`}
                         >
                           {freq}
                         </button>
@@ -599,9 +596,8 @@ export default function AgentDashboard() {
                     <input
                       {...registerCustomer("fullName")}
                       placeholder="Jane Miller"
-                      className={`w-full p-2.5 text-xs rounded-lg border bg-slate-950/60 text-white focus:outline-none focus:ring-1 focus:ring-sky-500/50 ${
-                        customerErrors.fullName ? "border-rose-500/60" : "border-slate-800"
-                      }`}
+                      className={`w-full p-2.5 text-xs rounded-lg border bg-slate-950/60 text-white focus:outline-none focus:ring-1 focus:ring-sky-500/50 ${customerErrors.fullName ? "border-rose-500/60" : "border-slate-800"
+                        }`}
                     />
                     {customerErrors.fullName && (
                       <p className="text-rose-400 text-[10px] mt-1">{customerErrors.fullName.message}</p>
@@ -615,9 +611,8 @@ export default function AgentDashboard() {
                     <input
                       {...registerCustomer("email")}
                       placeholder="jane@example.com"
-                      className={`w-full p-2.5 text-xs rounded-lg border bg-slate-950/60 text-white focus:outline-none focus:ring-1 focus:ring-sky-500/50 ${
-                        customerErrors.email ? "border-rose-500/60" : "border-slate-800"
-                      }`}
+                      className={`w-full p-2.5 text-xs rounded-lg border bg-slate-950/60 text-white focus:outline-none focus:ring-1 focus:ring-sky-500/50 ${customerErrors.email ? "border-rose-500/60" : "border-slate-800"
+                        }`}
                     />
                     {customerErrors.email && (
                       <p className="text-rose-400 text-[10px] mt-1">{customerErrors.email.message}</p>
@@ -631,9 +626,8 @@ export default function AgentDashboard() {
                     <input
                       {...registerCustomer("mobile")}
                       placeholder="9876543210"
-                      className={`w-full p-2.5 text-xs rounded-lg border bg-slate-950/60 text-white focus:outline-none focus:ring-1 focus:ring-sky-500/50 ${
-                        customerErrors.mobile ? "border-rose-500/60" : "border-slate-800"
-                      }`}
+                      className={`w-full p-2.5 text-xs rounded-lg border bg-slate-950/60 text-white focus:outline-none focus:ring-1 focus:ring-sky-500/50 ${customerErrors.mobile ? "border-rose-500/60" : "border-slate-800"
+                        }`}
                     />
                     {customerErrors.mobile && (
                       <p className="text-rose-400 text-[10px] mt-1">{customerErrors.mobile.message}</p>
@@ -647,9 +641,8 @@ export default function AgentDashboard() {
                     <input
                       {...registerCustomer("dob")}
                       type="date"
-                      className={`w-full p-2.5 text-xs rounded-lg border bg-slate-950/60 text-white focus:outline-none focus:ring-1 focus:ring-sky-500/50 ${
-                        customerErrors.dob ? "border-rose-500/60" : "border-slate-800"
-                      }`}
+                      className={`w-full p-2.5 text-xs rounded-lg border bg-slate-950/60 text-white focus:outline-none focus:ring-1 focus:ring-sky-500/50 ${customerErrors.dob ? "border-rose-500/60" : "border-slate-800"
+                        }`}
                     />
                     {customerErrors.dob && (
                       <p className="text-rose-400 text-[10px] mt-1">{customerErrors.dob.message}</p>
@@ -663,9 +656,8 @@ export default function AgentDashboard() {
                     <input
                       {...registerCustomer("aadhaar")}
                       placeholder="123456789012"
-                      className={`w-full p-2.5 text-xs rounded-lg border bg-slate-950/60 text-white focus:outline-none focus:ring-1 focus:ring-sky-500/50 ${
-                        customerErrors.aadhaar ? "border-rose-500/60" : "border-slate-800"
-                      }`}
+                      className={`w-full p-2.5 text-xs rounded-lg border bg-slate-950/60 text-white focus:outline-none focus:ring-1 focus:ring-sky-500/50 ${customerErrors.aadhaar ? "border-rose-500/60" : "border-slate-800"
+                        }`}
                     />
                     {customerErrors.aadhaar && (
                       <p className="text-rose-400 text-[10px] mt-1">{customerErrors.aadhaar.message}</p>
@@ -679,9 +671,8 @@ export default function AgentDashboard() {
                     <input
                       {...registerCustomer("pan")}
                       placeholder="ABCDE1234F"
-                      className={`w-full p-2.5 text-xs rounded-lg border bg-slate-950/60 text-white focus:outline-none focus:ring-1 focus:ring-sky-500/50 ${
-                        customerErrors.pan ? "border-rose-500/60" : "border-slate-800"
-                      }`}
+                      className={`w-full p-2.5 text-xs rounded-lg border bg-slate-950/60 text-white focus:outline-none focus:ring-1 focus:ring-sky-500/50 ${customerErrors.pan ? "border-rose-500/60" : "border-slate-800"
+                        }`}
                     />
                     {customerErrors.pan && (
                       <p className="text-rose-400 text-[10px] mt-1">{customerErrors.pan.message}</p>
@@ -695,9 +686,8 @@ export default function AgentDashboard() {
                     <input
                       {...registerCustomer("nomineeName")}
                       placeholder="John Miller"
-                      className={`w-full p-2.5 text-xs rounded-lg border bg-slate-950/60 text-white focus:outline-none focus:ring-1 focus:ring-sky-500/50 ${
-                        customerErrors.nomineeName ? "border-rose-500/60" : "border-slate-800"
-                      }`}
+                      className={`w-full p-2.5 text-xs rounded-lg border bg-slate-950/60 text-white focus:outline-none focus:ring-1 focus:ring-sky-500/50 ${customerErrors.nomineeName ? "border-rose-500/60" : "border-slate-800"
+                        }`}
                     />
                     {customerErrors.nomineeName && (
                       <p className="text-rose-400 text-[10px] mt-1">{customerErrors.nomineeName.message}</p>
@@ -711,9 +701,8 @@ export default function AgentDashboard() {
                     <input
                       {...registerCustomer("nomineeRelation")}
                       placeholder="Spouse"
-                      className={`w-full p-2.5 text-xs rounded-lg border bg-slate-950/60 text-white focus:outline-none focus:ring-1 focus:ring-sky-500/50 ${
-                        customerErrors.nomineeRelation ? "border-rose-500/60" : "border-slate-800"
-                      }`}
+                      className={`w-full p-2.5 text-xs rounded-lg border bg-slate-950/60 text-white focus:outline-none focus:ring-1 focus:ring-sky-500/50 ${customerErrors.nomineeRelation ? "border-rose-500/60" : "border-slate-800"
+                        }`}
                     />
                     {customerErrors.nomineeRelation && (
                       <p className="text-rose-400 text-[10px] mt-1">{customerErrors.nomineeRelation.message}</p>

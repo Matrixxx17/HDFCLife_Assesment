@@ -216,7 +216,7 @@ export default function AdminDashboard() {
             IF
           </div>
           <div>
-            <span className="font-extrabold text-white text-lg tracking-tight">InsureFlow</span>
+            <span className="font-extrabold text-white text-lg tracking-tight">HDFCINSURA</span>
             <span className="text-[10px] bg-teal-500/10 border border-teal-500/20 text-teal-400 font-semibold px-2 py-0.5 rounded-full ml-2">
               ADMIN
             </span>

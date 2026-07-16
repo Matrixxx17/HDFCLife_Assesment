@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: insureflow-backend
+    name: HDFCINSURA-backend
     runtime: node
     buildCommand: npm install && npm run build:backend
     startCommand: npm run start:backend
