@@ -286,7 +286,7 @@ export default function AgentDashboard() {
           <div className="h-6 w-[1px] bg-slate-800" />
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-slate-300 font-bold border border-slate-700">
-              {user.fullName[0].toUpperCase()}
+              {user.fullName?.[0]?.toUpperCase() ?? "?"}
             </div>
             <div className="hidden md:block text-left">
               <p className="text-xs font-semibold text-white leading-none">{user.fullName}</p>
@@ -914,7 +914,7 @@ export default function AgentDashboard() {
               <div className="flex justify-between items-start mb-6">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 font-bold">
-                    {viewCustomer.fullName[0].toUpperCase()}
+                    {viewCustomer.fullName?.[0]?.toUpperCase() ?? "?"}
                   </div>
                   <div>
                     <h3 className="font-bold text-white text-base">{viewCustomer.fullName}</h3>
