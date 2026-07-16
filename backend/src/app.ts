@@ -11,11 +11,21 @@ import { PolicyController } from "./controllers/policy.controller";
 
 const app = express();
 
-// Middlewares
-const allowedOrigin = process.env.FRONTEND_URL || "http://localhost:3000";
+// Support multiple allowed origins via comma-separated FRONTEND_URL env var
+// e.g. FRONTEND_URL=https://myapp.vercel.app,https://myapp-preview.vercel.app
+const rawOrigins = process.env.FRONTEND_URL || "http://localhost:3000";
+const allowedOrigins = rawOrigins.split(",").map((o) => o.trim());
+
 app.use(
   cors({
-    origin: allowedOrigin,
+    origin: (origin, callback) => {
+      // Allow requests with no origin (e.g. curl, Postman) in dev
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error(`CORS: origin '${origin}' not allowed`));
+      }
+    },
     credentials: true,
   })
 );

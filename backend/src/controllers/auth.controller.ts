@@ -28,10 +28,11 @@ export class AuthController {
 
       const { user, token } = await AuthService.login(parseResult.data, role);
 
+      const isProd = process.env.NODE_ENV === "production";
       res.cookie("token", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
+        secure: isProd,
+        sameSite: isProd ? "none" : "lax", // "none" required for cross-domain (Vercel <-> Render)
         maxAge: 15 * 60 * 1000, // 15 minutes
       });
 
@@ -48,10 +49,11 @@ export class AuthController {
   }
 
   static async logout(req: AuthenticatedRequest, res: Response) {
+    const isProd = process.env.NODE_ENV === "production";
     res.clearCookie("token", {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      secure: isProd,
+      sameSite: isProd ? "none" : "lax",
     });
     return res.status(200).json({
       success: true,

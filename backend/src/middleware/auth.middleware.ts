@@ -42,10 +42,11 @@ export function authMiddleware(req: AuthenticatedRequest, res: Response, next: N
         { expiresIn: "15m" }
       );
 
+      const isProd = process.env.NODE_ENV === "production";
       res.cookie("token", newToken, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
+        secure: isProd,
+        sameSite: isProd ? "none" : "lax", // "none" required for cross-domain (Vercel <-> Render)
         maxAge: 15 * 60 * 1000, // 15 minutes in milliseconds
       });
     }
