@@ -1,0 +1,6 @@
+{
+  "buildCommand": "npm run build -w shared && next build",
+  "installCommand": "npm install --prefix=..",
+  "framework": "nextjs",
+  "outputDirectory": ".next"
+}
