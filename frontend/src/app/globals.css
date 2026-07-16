@@ -105,3 +105,194 @@
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-muted-foreground/45;
 }
+
+/* ==========================================================================
+   LIGHT THEME OVERRIDES FOR PREMIUM LOOK & CONTRAST
+   ========================================================================== */
+.light {
+  color-scheme: light;
+}
+
+.light .min-h-screen.bg-\[\#080c16\] {
+  background-color: #f8fafc !important; /* slate-50 */
+  color: #0f172a !important; /* slate-900 */
+}
+
+/* Navbars & Footers */
+.light nav.border-slate-800,
+.light nav.border-b {
+  border-color: #e2e8f0 !important; /* slate-200 */
+  background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.light nav span, 
+.light nav p,
+.light nav h1,
+.light nav h2,
+.light nav h3 {
+  color: #0f172a !important;
+}
+
+.light nav .text-slate-400,
+.light nav .text-slate-500 {
+  color: #475569 !important;
+}
+
+/* Buttons (back, theme toggle, logout, pagination) */
+.light button.border-slate-800,
+.light div.border-slate-800 {
+  border-color: #e2e8f0 !important;
+  background-color: #f1f5f9 !important;
+  color: #475569 !important;
+}
+.light button.border-slate-800:hover,
+.light div.border-slate-800:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+/* Stat cards & charts containers */
+.light .bg-slate-900\/30,
+.light .bg-slate-900\/20,
+.light .border-slate-800 {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+.light h3,
+.light h4,
+.light h2,
+.light h1,
+.light p,
+.light span {
+  color: #0f172a !important;
+}
+
+.light .text-slate-400,
+.light .text-slate-500 {
+  color: #475569 !important;
+}
+
+.light .text-slate-300 {
+  color: #1e293b !important;
+}
+
+/* User avatar */
+.light .bg-slate-800 {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+/* Divider lines */
+.light .bg-slate-800,
+.light .border-slate-800,
+.light hr,
+.light .divide-y > * {
+  background-color: #e2e8f0 !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Active tab underlines */
+.light .text-teal-400 {
+  color: #0d9488 !important;
+}
+.light .bg-teal-400 {
+  background-color: #0d9488 !important;
+}
+.light .text-sky-400 {
+  color: #0284c7 !important;
+}
+.light .bg-sky-400 {
+  background-color: #0284c7 !important;
+}
+
+/* Badge colors (Admin, Agent, etc) */
+.light .bg-sky-500\/10 {
+  background-color: #e0f2fe !important;
+  border-color: #bae6fd !important;
+  color: #0369a1 !important;
+}
+.light .bg-teal-500\/10 {
+  background-color: #ccfbf1 !important;
+  border-color: #99f6e4 !important;
+  color: #0f766e !important;
+}
+.light .bg-rose-950\/5 {
+  background-color: #ffe4e6 !important;
+  color: #be123c !important;
+}
+.light .bg-rose-950\/5:hover {
+  background-color: #fecdd3 !important;
+}
+
+.light .bg-sky-950\/20 {
+  background-color: #e0f2fe !important;
+  border-color: #bae6fd !important;
+  color: #0369a1 !important;
+}
+.light .bg-sky-950\/20:hover {
+  background-color: #bae6fd !important;
+}
+
+/* Table styling */
+.light table thead tr {
+  background-color: #f1f5f9 !important;
+  border-bottom: 1px solid #cbd5e1 !important;
+}
+.light th {
+  color: #475569 !important;
+}
+.light td {
+  color: #334155 !important;
+}
+.light tbody tr:hover {
+  background-color: #f8fafc !important;
+}
+
+/* Modals & drawers */
+.light .bg-slate-900,
+.light [role="dialog"] {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1) !important;
+}
+
+/* Form controls */
+.light .bg-slate-950\/60,
+.light .bg-slate-950\/20,
+.light .bg-slate-950\/40,
+.light input,
+.light select,
+.light textarea {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+.light input::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Form action buttons cancel */
+.light button.bg-slate-900 {
+  background-color: #f1f5f9 !important;
+  color: #475569 !important;
+  border-color: #cbd5e1 !important;
+}
+.light button.bg-slate-900:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+/* Recharts overrides */
+.light .recharts-cartesian-grid-horizontal line,
+.light .recharts-cartesian-grid-vertical line {
+  stroke: #e2e8f0 !important;
+}
+
+.light .recharts-tooltip-wrapper > div {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+

@@ -8,6 +8,7 @@ export interface AuthenticatedRequest extends Request {
     id: string;
     email: string;
     role: "Admin" | "Agent";
+    fullName: string;
   };
 }
 
@@ -27,6 +28,7 @@ export function authMiddleware(req: AuthenticatedRequest, res: Response, next: N
       id: decoded.id,
       email: decoded.email,
       role: decoded.role,
+      fullName: decoded.fullName || "",
     };
 
     // Sliding window token refresh
@@ -37,7 +39,7 @@ export function authMiddleware(req: AuthenticatedRequest, res: Response, next: N
     if (timeRemaining > 0 && timeRemaining < 300) {
       // 5 minutes = 300 seconds
       const newToken = jwt.sign(
-        { id: decoded.id, email: decoded.email, role: decoded.role },
+        { id: decoded.id, email: decoded.email, role: decoded.role, fullName: decoded.fullName },
         JWT_SECRET,
         { expiresIn: "15m" }
       );

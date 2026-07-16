@@ -27,7 +27,7 @@ export class AuthService {
     }
 
     const token = jwt.sign(
-      { id: user._id, email: user.email, role: user.role },
+      { id: user._id, email: user.email, role: user.role, fullName: user.fullName },
       JWT_SECRET,
       { expiresIn: "15m" }
     );
