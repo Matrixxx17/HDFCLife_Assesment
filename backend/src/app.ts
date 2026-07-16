@@ -45,6 +45,9 @@ const loginLimiter = rateLimit({
   legacyHeaders: false,
 });
 
+// Health Check (used by Render to verify the service is alive)
+app.get("/healthz", (_req, res) => res.status(200).json({ status: "ok" }));
+
 // Auth Routes
 const authRouter = express.Router();
 authRouter.post("/login", loginLimiter, AuthController.login);
