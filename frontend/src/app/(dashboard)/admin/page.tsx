@@ -418,7 +418,7 @@ export default function AdminDashboard() {
                   </div>
 
                   {/* Agent Policies Bar Chart */}
-                  <div className="p-6 rounded-2xl border border-slate-800 bg-slate-900/30 backdrop-blur-md flex flex-col col-span-2 h-[350px]">
+                  <div className="p-6 rounded-2xl border border-slate-800 bg-slate-900/30 backdrop-blur-md flex flex-col col-span-1 lg:col-span-2 h-[350px]">
                     <h4 className="font-bold text-sm tracking-tight text-white mb-4">
                       Policies Issued by Agent (Sales Funnel)
                     </h4>
@@ -661,7 +661,7 @@ export default function AdminDashboard() {
               initial={{ opacity: 0, scale: 0.95, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              className="relative w-full max-w-md p-6 rounded-2xl border border-slate-800 bg-slate-900 shadow-xl overflow-hidden z-10"
+              className="relative w-full max-w-md p-6 rounded-2xl border border-slate-800 bg-slate-900 shadow-xl overflow-y-auto max-h-[90vh] z-10"
             >
               <div className="flex items-center gap-2 mb-6">
                 <div className="w-8 h-8 rounded-lg bg-teal-500/10 flex items-center justify-center text-teal-400 border border-teal-500/20">

@@ -61,6 +61,7 @@ export default function AgentDashboard() {
   // Search and tabs
   const [customerSearch, setCustomerSearch] = useState("");
   const [activeTab, setActiveTab] = useState<"calculator" | "policies">("calculator");
+  const [showCalculatorMobile, setShowCalculatorMobile] = useState(false);
 
   // Modals state
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
@@ -253,7 +254,7 @@ export default function AgentDashboard() {
           </div>
         </div>
 
-        {/* Global Search command hint */}
+        {/* Global Search command hint — desktop */}
         <div
           onClick={() => setIsPaletteOpen(true)}
           className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-950/40 text-xs text-slate-500 cursor-pointer hover:border-slate-700 transition-colors w-64 justify-between"
@@ -265,6 +266,15 @@ export default function AgentDashboard() {
             <Keyboard className="w-2.5 h-2.5" /> ⌘K
           </span>
         </div>
+
+        {/* Mobile search icon — opens command palette */}
+        <button
+          onClick={() => setIsPaletteOpen(true)}
+          className="md:hidden p-2 rounded-lg border border-slate-800 bg-slate-900/50 hover:bg-slate-900 text-slate-400 hover:text-white transition-colors"
+          title="Open search"
+        >
+          <Search className="w-4 h-4" />
+        </button>
 
         <div className="flex items-center gap-4">
           <button
@@ -295,6 +305,17 @@ export default function AgentDashboard() {
 
       {/* Main Grid Content */}
       <main className="flex-1 p-4 md:p-6 max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        {/* Mobile Calculator Toggle */}
+        <div className="lg:hidden col-span-full flex justify-end">
+          <button
+            onClick={() => setShowCalculatorMobile((v) => !v)}
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg border border-sky-500/30 bg-sky-950/20 text-sky-400 text-xs font-semibold transition-colors hover:bg-sky-950/40"
+          >
+            <Calculator className="w-3.5 h-3.5" />
+            {showCalculatorMobile ? "Hide Calculator" : "Show Quote Calculator"}
+          </button>
+        </div>
         {/* Left Column: Customers List */}
         <div className="lg:col-span-2 flex flex-col gap-5">
           <div className="flex items-center justify-between">
@@ -339,7 +360,7 @@ export default function AgentDashboard() {
                 {customersData.map((cust: Customer) => (
                   <div
                     key={cust._id}
-                    className="p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 hover:bg-slate-900/10 transition-colors"
+                    className="p-4 flex flex-col xs:flex-row justify-between items-start xs:items-center gap-3 hover:bg-slate-900/10 transition-colors"
                   >
                     <div>
                       <h4 className="font-bold text-white text-sm flex items-center gap-1.5">
@@ -354,15 +375,19 @@ export default function AgentDashboard() {
                           </span>
                         )}
                       </h4>
-                      <p className="text-[11px] text-slate-400 mt-1">
-                        Email: {cust.email} &bull; Mobile: {cust.mobile} &bull; Aadhaar: {cust.aadhaar}
+                      <p className="text-[11px] text-slate-400 mt-1 break-all">
+                        <span className="block sm:inline">Email: {cust.email}</span>{" "}
+                        <span className="hidden sm:inline">&bull;</span>{" "}
+                        <span className="block sm:inline">Mobile: {cust.mobile}</span>{" "}
+                        <span className="hidden sm:inline">&bull;</span>{" "}
+                        <span className="block sm:inline">Aadhaar: {cust.aadhaar}</span>
                       </p>
                       <p className="text-[10px] text-slate-500 mt-0.5">
                         Nominee: {cust.nomineeName} ({cust.nomineeRelation})
                       </p>
                     </div>
 
-                    <div className="flex gap-2 w-full sm:w-auto">
+                    <div className="flex gap-2 w-full xs:w-auto">
                       <button
                         onClick={() => setViewCustomer(cust)}
                         className="flex-1 sm:flex-initial p-1.5 border border-slate-800 hover:border-slate-700 bg-slate-900/50 hover:bg-slate-900 rounded-lg text-slate-300 inline-flex items-center justify-center align-middle"
@@ -394,8 +419,8 @@ export default function AgentDashboard() {
           </div>
         </div>
 
-        {/* Right Column: Premium Calculator Widget */}
-        <div className="flex flex-col gap-5">
+        {/* Right Column: Premium Calculator Widget — hidden on mobile unless toggled */}
+        <div className={`flex-col gap-5 ${showCalculatorMobile ? "flex" : "hidden"} lg:flex`}>
           <div className="flex border-b border-slate-800">
             <button
               onClick={() => setActiveTab("calculator")}
@@ -566,7 +591,7 @@ export default function AgentDashboard() {
               </div>
 
               <form onSubmit={handleCustomerSubmit(onCustomerCreateSubmit)} className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
                       Full Name
@@ -748,7 +773,7 @@ export default function AgentDashboard() {
               </div>
 
               <form onSubmit={handleCustomerSubmit(onCustomerEditSubmit)} className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
                       Full Name
@@ -920,7 +945,7 @@ export default function AgentDashboard() {
               </div>
 
               {/* Customer summary */}
-              <div className="grid grid-cols-2 gap-4 text-xs mb-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs mb-6">
                 <div className="p-3 rounded-lg bg-slate-950/40 border border-slate-800">
                   <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block mb-1">Aadhaar</span>
                   <span className="font-semibold text-slate-200">{viewCustomer.aadhaar}</span>
