@@ -96,9 +96,8 @@ function AdminLoginForm() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`w-full max-w-md p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/40 backdrop-blur-md relative shadow-xl ${
-          shake ? "animate-shake" : ""
-        }`}
+        className={`w-full max-w-md p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/40 backdrop-blur-md relative shadow-xl ${shake ? "animate-shake" : ""
+          }`}
       >
         <div className="flex flex-col items-center text-center mb-8">
           <div className="w-12 h-12 rounded-xl bg-teal-500/10 flex items-center justify-center text-teal-400 mb-4 border border-teal-500/20">
@@ -119,9 +118,8 @@ function AdminLoginForm() {
                 {...register("email")}
                 type="email"
                 placeholder="admin@insurance.com"
-                className={`w-full pl-10 pr-4 py-3 rounded-lg border bg-slate-100/60 dark:bg-slate-950/60 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-teal-500/50 focus:border-teal-500/50 transition-colors ${
-                  errors.email ? "border-rose-500/60" : "border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700"
-                }`}
+                className={`w-full pl-10 pr-4 py-3 rounded-lg border bg-slate-100/60 dark:bg-slate-950/60 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-teal-500/50 focus:border-teal-500/50 transition-colors ${errors.email ? "border-rose-500/60" : "border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700"
+                  }`}
               />
             </div>
             {errors.email && (
@@ -139,9 +137,8 @@ function AdminLoginForm() {
                 {...register("password")}
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
-                className={`w-full pl-10 pr-10 py-3 rounded-lg border bg-slate-100/60 dark:bg-slate-950/60 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-teal-500/50 focus:border-teal-500/50 transition-colors ${
-                  errors.password ? "border-rose-500/60" : "border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700"
-                }`}
+                className={`w-full pl-10 pr-10 py-3 rounded-lg border bg-slate-100/60 dark:bg-slate-950/60 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:ring-1 focus:ring-teal-500/50 focus:border-teal-500/50 transition-colors ${errors.password ? "border-rose-500/60" : "border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700"
+                  }`}
               />
               <button
                 type="button"
@@ -169,9 +166,9 @@ function AdminLoginForm() {
           </button>
         </form>
 
-        <div className="mt-8 text-center text-[10px] text-slate-400 dark:text-slate-600 tracking-wider">
+        {/* <div className="mt-8 text-center text-[10px] text-slate-400 dark:text-slate-600 tracking-wider">
           SECURE CONNECTION &middot; ATTEMPT RATE LIMIT ACTIVE
-        </div>
+        </div> */}
       </motion.div>
     </div>
   );

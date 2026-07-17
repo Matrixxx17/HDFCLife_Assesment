@@ -1,108 +1,116 @@
 # HDFCINSURA — Insurance Policy Management System
 
-A production-grade, full-stack **Insurance Policy Management System** built using the **MERN stack** with **TypeScript**. The platform features strict role-based access control (RBAC), database-level ownership isolation between agents, real-time premium calculations, automated PII masking, and cookie-based JWT authentication with sliding-window session refresh.
+A full-stack insurance policy management platform built on the MERN stack with TypeScript. It handles role-based access for Admins and Agents, enforces real-world insurance business rules, masks PII in every response, and keeps sessions alive through a sliding-window JWT refresh strategy.
+
+**Live:** [hdfcinsura.vercel.app](https://hdfcinsura.vercel.app)  
+**API:** [insureflow-backend-u92x.onrender.com](https://insureflow-backend-u92x.onrender.com)  
+**Health check:** [/healthz](https://insureflow-backend-u92x.onrender.com/healthz)
+
+> The backend is on Render's free tier — hit the health check URL first so it wakes up before you test anything.
 
 ---
 
-## 🔗 Live Deployment
+## Screenshots
 
-| Service | URL |
-|---|---|
-| **Frontend (Vercel)** | https://hdfcinsura.vercel.app |
-| **Backend API (Render)** | https://insureflow-backend-u92x.onrender.com |
-| **Health Check** | https://insureflow-backend-u92x.onrender.com/healthz |
+### Portal Selector
+![Landing page](docs/screenshots/landing.png)
 
-> **Note:** The backend runs on Render's free tier and may take **20–40 seconds** to wake up after inactivity. Open the health check URL first before testing.
+### Admin Login
+![Admin login](docs/screenshots/admin_login.png)
+
+### Admin Dashboard
+![Admin dashboard](docs/screenshots/admin_dashboard.png)
+
+### Agent Dashboard
+![Agent dashboard](docs/screenshots/agent_dashboard.png)
 
 ---
 
-## 🔐 Demo Credentials
+## Demo Credentials
 
-| Role | Email | Password |
-|---|---|---|
-| Admin | `admin@insurance.com` | `admin123` |
+| Role    | Email                  | Password   |
+|---------|------------------------|------------|
+| Admin   | `admin@insurance.com`  | `admin123` |
 | Agent 1 | `agent1@insurance.com` | `agent123` |
 | Agent 2 | `agent2@insurance.com` | `agent123` |
 
 ---
 
-## 🏗 Tech Stack
+## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| **Backend** | Node.js + Express.js + TypeScript |
-| **Frontend** | Next.js 14 (App Router) + React 18 + TypeScript |
-| **Database** | MongoDB (Mongoose ODM) |
-| **State Management** | TanStack React Query v5 |
-| **Auth** | Cookie-based JWT (HTTPOnly, Secure, SameSite) — 15 min expiry |
-| **Validation** | Zod (shared between frontend and backend) |
-| **Forms** | React Hook Form + Zod resolver |
-| **Styling** | Tailwind CSS + Framer Motion |
-| **Testing** | Jest + Supertest + mongodb-memory-server |
-| **API** | RESTful via Axios |
+| Layer            | Technology                                         |
+|------------------|----------------------------------------------------|
+| Backend          | Node.js · Express.js · TypeScript                  |
+| Frontend         | Next.js 14 (App Router) · React 18 · TypeScript    |
+| Database         | MongoDB (Mongoose ODM)                             |
+| State Management | TanStack React Query v5                            |
+| Auth             | Cookie-based JWT (HTTPOnly · Secure · SameSite)    |
+| Validation       | Zod — shared schema between frontend and backend   |
+| Forms            | React Hook Form + Zod resolver                     |
+| Styling          | Tailwind CSS + Framer Motion                       |
+| Testing          | Jest · Supertest · mongodb-memory-server           |
+| API              | REST via Axios                                     |
 
 ---
 
-## 📁 Directory Structure
+## Project Structure
 
 ```
 /
-├── shared/            # Shared Zod schemas, types, and utilities
-│   └── src/index.ts   # LoginSchema, AgentCreateSchema, CustomerSchema, etc.
+├── shared/            # Zod schemas + types shared between frontend and backend
+│   └── src/index.ts
 │
-├── backend/           # Express API server
-│   ├── src/
-│   │   ├── controllers/   # HTTP request handlers
-│   │   ├── services/      # Business logic + DB queries
-│   │   ├── models/        # Mongoose schemas (User, Customer, Policy)
-│   │   ├── routes/        # Route definitions + middleware
-│   │   ├── middleware/     # Auth, ownership, error handling
-│   │   ├── scripts/       # Seed script
-│   │   └── tests/         # Jest test suites
-│   ├── .env.example
-│   ├── package.json
-│   └── tsconfig.json
+├── backend/
+│   └── src/
+│       ├── controllers/   # HTTP handlers
+│       ├── services/      # Business logic + DB queries
+│       ├── models/        # Mongoose schemas (User, Customer, Policy)
+│       ├── routes/        # Route definitions + middleware binding
+│       ├── middleware/    # Auth, ownership, error handling
+│       ├── utils/         # PII masking helpers
+│       ├── scripts/       # Seed script
+│       └── tests/         # Jest test suites
 │
-├── frontend/          # Next.js 14 App Router client
-│   ├── src/
-│   │   ├── app/           # Pages and layouts
-│   │   │   ├── (auth)/    # Admin & Agent login pages
-│   │   │   ├── (dashboard)/ # Admin & Agent dashboards
-│   │   │   └── page.tsx   # Landing/portal selector
-│   │   ├── components/    # Auth provider, toast, theme, policy wizard
-│   │   └── lib/           # Axios client
-│   ├── .env.example
-│   ├── vercel.json
-│   └── next.config.js
+├── frontend/
+│   └── src/
+│       ├── app/
+│       │   ├── (auth)/       # Admin & Agent login pages
+│       │   ├── (dashboard)/  # Admin & Agent dashboards
+│       │   └── page.tsx      # Portal selector (landing)
+│       ├── components/       # Auth provider, toast, theme, policy wizard
+│       └── lib/              # Axios client config
 │
-├── package.json       # Root npm workspaces config
-├── render.yaml        # Render deployment config
-└── README.md
+├── package.json       # npm workspaces root
+└── render.yaml        # Render deployment config
 ```
 
 ---
 
-## ⚙️ Local Setup
+## Local Setup
 
 ### Prerequisites
-- Node.js v18 or higher
-- MongoDB running locally **OR** a MongoDB Atlas connection string
+- Node.js v18+
+- MongoDB running locally **or** a MongoDB Atlas connection string
 
-### 1. Clone the Repository
+### 1. Clone
+
 ```bash
 git clone https://github.com/Matrixxx17/HDFCLife_Assesment.git
 cd HDFCLife_Assesment
 ```
 
-### 2. Install All Dependencies
-From the root directory (uses npm workspaces):
+### 2. Install
+
+Run this from the repo root — npm workspaces installs everything in one shot:
+
 ```bash
 npm install
 ```
 
-### 3. Configure Environment Variables
+### 3. Environment variables
 
 **Backend** — create `backend/.env`:
+
 ```ini
 PORT=5000
 NODE_ENV=development
@@ -112,165 +120,156 @@ FRONTEND_URL=http://localhost:3000
 ```
 
 **Frontend** — create `frontend/.env.local`:
+
 ```ini
 NEXT_PUBLIC_API_URL=http://localhost:5000/api
 ```
 
-> See `backend/.env.example` and `frontend/.env.example` for all available variables.
+See `backend/.env.example` and `frontend/.env.example` for the full list of available variables.
 
-### 4. Seed the Database
+### 4. Seed the database
+
 Creates the default Admin and Agent accounts:
+
 ```bash
 npm run seed --workspace=backend
 ```
 
-**Seeded credentials:**
-| Role | Email | Password |
-|---|---|---|
-| Admin | `admin@insurance.com` | `admin123` |
-| Agent 1 | `agent1@insurance.com` | `agent123` |
-| Agent 2 | `agent2@insurance.com` | `agent123` |
+### 5. Start development servers
 
-### 5. Run Development Servers
 ```bash
-# Terminal 1 — Start backend (port 5000)
+# Terminal 1 — backend on port 5000
 npm run dev --workspace=backend
 
-# Terminal 2 — Start frontend (port 3000)
+# Terminal 2 — frontend on port 3000
 npm run dev --workspace=frontend
 ```
 
-Open **http://localhost:3000** to access the portal.
+Open **http://localhost:3000**.
 
 ---
 
-## 🧪 Running Tests
+## Running Tests
 
 ```bash
-# Run all backend tests
 npm run test --workspace=backend
 ```
 
-Tests use `mongodb-memory-server` — no external database connection is required.
+Uses `mongodb-memory-server` so no external database is needed.
 
-**Test coverage includes:**
-- Business rule validation (age, PAN, Aadhaar, mobile, premium, dates)
-- PII masking utilities (Aadhaar, PAN, Mobile)
-- Role-based access control enforcement
-- Agent ownership isolation (cross-agent access prevention)
-- Policy issuance workflow validation
+**What's covered:**
+- Business rule validation (age limits, PAN/Aadhaar format, mobile format, premium floor, date rules)
+- PII masking (Aadhaar, PAN, Mobile)
+- RBAC enforcement (Admin vs Agent routes)
+- Agent ownership isolation — agent A cannot touch agent B's customers
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
 ### Backend → Render
 
-| Setting | Value |
-|---|---|
-| **Build Command** | `npm install && npm run build:backend` |
-| **Start Command** | `node backend/dist/server.js` |
-| **Health Check** | `/healthz` |
+| Setting         | Value                                  |
+|-----------------|----------------------------------------|
+| Build command   | `npm install && npm run build:backend` |
+| Start command   | `node backend/dist/server.js`          |
+| Health check    | `/healthz`                             |
 
-**Required Render Environment Variables:**
+Required env vars on Render:
+
 ```ini
 NODE_ENV=production
-MONGODB_URI=<your_atlas_connection_string>
-JWT_SECRET=<strong_random_secret>
+MONGODB_URI=<your Atlas connection string>
+JWT_SECRET=<strong random secret>
 FRONTEND_URL=https://hdfcinsura.vercel.app
 ```
 
 ### Frontend → Vercel
 
-| Setting | Value |
-|---|---|
-| **Root Directory** | `frontend` |
-| **Framework** | Next.js |
-| **Build Command** | *(auto from vercel.json)* |
-| **Install Command** | `npm install --prefix=..` |
+| Setting         | Value                    |
+|-----------------|--------------------------|
+| Root directory  | `frontend`               |
+| Framework       | Next.js                  |
+| Install command | `npm install --prefix=..`|
 
-**Required Vercel Environment Variables:**
+Required env vars on Vercel:
+
 ```ini
 NEXT_PUBLIC_API_URL=/api
 BACKEND_API_URL=https://<your-render-service>.onrender.com
 ```
 
-> The frontend uses Next.js **rewrite rules** to proxy `/api/*` requests to the backend, making auth cookies first-party and solving mobile browser restrictions.
+The Next.js rewrite rules in `next.config.js` proxy all `/api/*` requests to the Render backend, making auth cookies first-party and avoiding SameSite issues on mobile browsers.
 
 ---
 
-## 🏛 Key Architecture Decisions
-
-### 1. Monorepo with npm Workspaces
-Three packages: `shared`, `backend`, `frontend`. The `shared` package contains Zod schemas used for validation on **both** the client (instant visual feedback) and server (authoritative enforcement).
-
-### 2. Layered Backend Architecture
-- **Routes** → define endpoints + apply middleware
-- **Controllers** → HTTP serialization + call Services
-- **Services** → business rules + DB queries
-- **Models** → Mongoose schemas
-
-### 3. Agent Ownership Isolation
-All MongoDB queries in agent-facing services are scoped by `agentId` from the authenticated JWT. A `checkCustomerOwnership` middleware verifies ownership before any write. Client-supplied agent IDs are never trusted.
-
-### 4. PII Masking
-A custom serializer function masks sensitive fields before any JSON response:
-- **Aadhaar** `123456789012` → `XXXX-XXXX-9012`
-- **PAN** `ABCDE1234F` → `ABCXX12XXF`
-- **Mobile** `9876543210` → `98XXXXXX10`
-
-### 5. Sliding-Window Session Refresh
-If a valid request arrives within the last 5 minutes of a session, the backend silently issues a new 15-minute token in the response cookie — keeping active users seamlessly logged in.
-
-### 6. Cross-Domain Cookie Handling
-When deployed (Vercel + Render), the Next.js `rewrites` in `next.config.js` proxy all `/api/*` requests from the frontend domain to Render, making auth cookies first-party. This resolves mobile browser SameSite restrictions without any security compromises.
-
----
-
-## 📋 API Reference
+## API Reference
 
 ### Auth
-| Method | Endpoint | Description |
-|---|---|---|
-| `POST` | `/api/auth/login` | Login as Admin or Agent |
-| `POST` | `/api/auth/logout` | Clear session cookie |
-| `GET` | `/api/auth/me` | Get current session user |
+
+| Method | Endpoint          | Description            |
+|--------|-------------------|------------------------|
+| POST   | `/api/auth/login` | Login (Admin or Agent) |
+| POST   | `/api/auth/logout`| Clear session cookie   |
+| GET    | `/api/auth/me`    | Get current session    |
 
 ### Admin
-| Method | Endpoint | Description |
-|---|---|---|
-| `POST` | `/api/admin/agents` | Create a new Agent account |
-| `GET` | `/api/admin/agents` | List agents (paginated, filterable) |
-| `GET` | `/api/admin/agents/:id` | View agent profile + stats |
-| `DELETE` | `/api/admin/agents/:id` | Soft-deactivate an agent |
-| `GET` | `/api/admin/analytics` | System-wide analytics dashboard |
+
+| Method | Endpoint                  | Description                        |
+|--------|---------------------------|------------------------------------|
+| POST   | `/api/admin/agents`       | Create a new Agent account         |
+| GET    | `/api/admin/agents`       | List agents (paginated, filterable)|
+| GET    | `/api/admin/agents/:id`   | Agent profile + stats              |
+| DELETE | `/api/admin/agents/:id`   | Soft-deactivate an agent           |
+| GET    | `/api/admin/analytics`    | System-wide analytics              |
 
 ### Agent — Customers
-| Method | Endpoint | Description |
-|---|---|---|
-| `POST` | `/api/customers` | Create a new customer |
-| `GET` | `/api/customers/search?q=` | Search own customers |
-| `GET` | `/api/customers/:id` | View customer detail |
-| `PUT` | `/api/customers/:id` | Edit own customer |
+
+| Method | Endpoint                  | Description                |
+|--------|---------------------------|----------------------------|
+| POST   | `/api/customers`          | Create customer            |
+| GET    | `/api/customers/search?q=`| Search own customers       |
+| GET    | `/api/customers/:id`      | View customer              |
+| PUT    | `/api/customers/:id`      | Update customer            |
 
 ### Agent — Policies
-| Method | Endpoint | Description |
-|---|---|---|
-| `POST` | `/api/policies/issue` | Issue a policy for a customer |
-| `GET` | `/api/policies/customer/:customerId` | List policies for a customer |
+
+| Method | Endpoint                            | Description                  |
+|--------|-------------------------------------|------------------------------|
+| POST   | `/api/policies/issue`               | Issue policy for a customer  |
+| GET    | `/api/policies/customer/:customerId`| List policies for a customer |
 
 ---
 
-## ✅ Business Rules Enforced
+## Business Rules
 
 1. Customer age must be between **18 and 65 years**
-2. **PAN is mandatory** if premium > ₹50,000
-3. **Nominee is mandatory** and cannot be the same person as the policyholder
+2. PAN is **mandatory** when premium > ₹50,000
+3. Nominee is **mandatory** and cannot be the same person as the policyholder
 4. Mobile must be **10 digits** starting with 6, 7, 8, or 9
 5. Aadhaar must be **exactly 12 digits**
-6. Policy term must be one of **10, 15, 20, 25, or 30 years**
-7. Premium frequency must be **Monthly, Quarterly, Half-Yearly, or Yearly**
-8. **Minimum premium is ₹5,000**
+6. Policy term: **10, 15, 20, 25, or 30 years**
+7. Premium frequency: **Monthly, Quarterly, Half-Yearly, or Yearly**
+8. Minimum premium: **₹5,000**
 9. Policy start date **cannot be in the past**
-10. **PAN and Aadhaar must be unique** across all customers
-11. Once a policy is issued, the **owning Agent cannot be changed**
+10. PAN and Aadhaar must be **unique** across all customers
+11. Once issued, the **owning agent cannot be changed** on a policy
+
+---
+
+## Architecture Notes
+
+**Monorepo via npm Workspaces** — `shared`, `backend`, `frontend` are three separate packages. The `shared` package holds Zod schemas that run on both client (for instant inline validation) and server (authoritative enforcement). This eliminates duplicated validation logic entirely.
+
+**Layered backend** — Routes bind middleware and hand off to Controllers. Controllers handle HTTP serialization and delegate to Services. Services own all business logic and DB queries. Models define the data shapes.
+
+**Agent data isolation** — Every MongoDB query in agent-facing services is scoped to `agentId` extracted from the authenticated JWT. A dedicated `checkCustomerOwnership` middleware gates all write operations. The server never trusts a client-supplied agent ID.
+
+**PII masking** — A serializer runs before any customer or policy data leaves the server:
+- Aadhaar `123456789012` → `XXXX-XXXX-9012`
+- PAN `ABCDE1234F` → `ABCXX12XXF`
+- Mobile `9876543210` → `98XXXXXX10`
+
+**Sliding-window session refresh** — If a valid request arrives within the last 5 minutes of a 15-minute session window, the backend transparently issues a new token in the response cookie. Active users never hit an unexpected logout.
+
+**Cross-domain cookie handling** — Next.js `rewrites` in `next.config.js` proxy `/api/*` from the Vercel domain to Render, making cookies first-party. This sidesteps `SameSite=None` restrictions on Safari and Firefox without any security trade-offs.

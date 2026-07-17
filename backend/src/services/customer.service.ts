@@ -4,13 +4,11 @@ import mongoose from "mongoose";
 
 export class CustomerService {
   static async createCustomer(input: CustomerInput, agentId: string) {
-    // Unique Aadhaar check
     const existingAadhaar = await Customer.findOne({ aadhaar: input.aadhaar });
     if (existingAadhaar) {
       throw new Error("A customer with this Aadhaar number already exists.");
     }
 
-    // Unique PAN check
     if (input.pan) {
       const existingPan = await Customer.findOne({ pan: input.pan.toUpperCase() });
       if (existingPan) {
@@ -30,7 +28,7 @@ export class CustomerService {
 
   static async searchCustomers(q: string, agentId: string) {
     const query: any = { agentId: new mongoose.Types.ObjectId(agentId) };
-    
+
     if (q) {
       const regex = new RegExp(q, "i");
       query.$or = [
@@ -50,7 +48,7 @@ export class CustomerService {
       _id: new mongoose.Types.ObjectId(id),
       agentId: new mongoose.Types.ObjectId(agentId),
     });
-    
+
     if (!customer) {
       throw new Error("Customer not found or access denied.");
     }
@@ -67,7 +65,6 @@ export class CustomerService {
       throw new Error("Customer not found or access denied.");
     }
 
-    // Unique Aadhaar check
     const existingAadhaar = await Customer.findOne({
       aadhaar: input.aadhaar,
       _id: { $ne: new mongoose.Types.ObjectId(id) },
@@ -76,7 +73,6 @@ export class CustomerService {
       throw new Error("Another customer with this Aadhaar number already exists.");
     }
 
-    // Unique PAN check
     if (input.pan) {
       const existingPan = await Customer.findOne({
         pan: input.pan.toUpperCase(),

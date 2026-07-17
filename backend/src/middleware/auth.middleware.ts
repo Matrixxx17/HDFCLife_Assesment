@@ -31,13 +31,10 @@ export function authMiddleware(req: AuthenticatedRequest, res: Response, next: N
       fullName: decoded.fullName || "",
     };
 
-    // Sliding window token refresh
-    // If the token has less than 5 minutes left, issue a new one
     const now = Math.floor(Date.now() / 1000);
     const timeRemaining = decoded.exp - now;
 
     if (timeRemaining > 0 && timeRemaining < 300) {
-      // 5 minutes = 300 seconds
       const newToken = jwt.sign(
         { id: decoded.id, email: decoded.email, role: decoded.role, fullName: decoded.fullName },
         JWT_SECRET,
@@ -48,8 +45,8 @@ export function authMiddleware(req: AuthenticatedRequest, res: Response, next: N
       res.cookie("token", newToken, {
         httpOnly: true,
         secure: isProd,
-        sameSite: isProd ? "none" : "lax", // "none" required for cross-domain (Vercel <-> Render)
-        maxAge: 15 * 60 * 1000, // 15 minutes in milliseconds
+        sameSite: isProd ? "none" : "lax",
+        maxAge: 15 * 60 * 1000,
       });
     }
 

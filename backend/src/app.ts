@@ -11,15 +11,12 @@ import { PolicyController } from "./controllers/policy.controller";
 
 const app = express();
 
-// Support multiple allowed origins via comma-separated FRONTEND_URL env var
-// e.g. FRONTEND_URL=https://myapp.vercel.app,https://myapp-preview.vercel.app
 const rawOrigins = process.env.FRONTEND_URL || "http://localhost:3000";
 const allowedOrigins = rawOrigins.split(",").map((o) => o.trim());
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (e.g. curl, Postman) in dev
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
@@ -33,10 +30,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Rate limit login route to prevent brute-force attacks
 const loginLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 10, // 10 attempts
+  windowMs: 15 * 60 * 1000,
+  max: 10,
   message: {
     success: false,
     error: { message: "Too many login attempts. Please try again after 15 minutes." },
@@ -45,17 +41,14 @@ const loginLimiter = rateLimit({
   legacyHeaders: false,
 });
 
-// Health Check (used by Render to verify the service is alive)
 app.get("/healthz", (_req, res) => res.status(200).json({ status: "ok" }));
 
-// Auth Routes
 const authRouter = express.Router();
 authRouter.post("/login", loginLimiter, AuthController.login);
 authRouter.post("/logout", AuthController.logout);
 authRouter.get("/me", authMiddleware, AuthController.me);
 app.use("/api/auth", authRouter);
 
-// Admin Routes
 const adminRouter = express.Router();
 adminRouter.use(authMiddleware, requireRole("Admin"));
 adminRouter.post("/agents", AdminController.createAgent);
@@ -65,7 +58,6 @@ adminRouter.delete("/agents/:id", AdminController.deactivateAgent);
 adminRouter.get("/analytics", AdminController.getAnalytics);
 app.use("/api/admin", adminRouter);
 
-// Customer Routes
 const customerRouter = express.Router();
 customerRouter.use(authMiddleware, requireRole("Agent"));
 customerRouter.post("/", CustomerController.createCustomer);
@@ -74,7 +66,6 @@ customerRouter.get("/:id", checkCustomerOwnership, CustomerController.getCustome
 customerRouter.put("/:id", checkCustomerOwnership, CustomerController.updateCustomer);
 app.use("/api/customers", customerRouter);
 
-// Policy Routes
 const policyRouter = express.Router();
 policyRouter.use(authMiddleware, requireRole("Agent"));
 policyRouter.post("/issue", PolicyController.issuePolicy);
@@ -85,7 +76,6 @@ policyRouter.get(
 );
 app.use("/api/policies", policyRouter);
 
-// Global Error Handler
 app.use(
   (
     err: any,

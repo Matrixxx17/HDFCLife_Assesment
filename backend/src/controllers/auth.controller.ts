@@ -32,8 +32,8 @@ export class AuthController {
       res.cookie("token", token, {
         httpOnly: true,
         secure: isProd,
-        sameSite: isProd ? "none" : "lax", // "none" required for cross-domain (Vercel <-> Render)
-        maxAge: 15 * 60 * 1000, // 15 minutes
+        sameSite: isProd ? "none" : "lax",
+        maxAge: 15 * 60 * 1000,
       });
 
       return res.status(200).json({

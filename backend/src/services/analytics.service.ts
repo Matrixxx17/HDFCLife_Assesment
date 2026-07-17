@@ -3,11 +3,9 @@ import Policy from "../models/Policy";
 
 export class AnalyticsService {
   static async getDashboardAnalytics() {
-    // 1. Active vs Inactive agents count
     const activeAgents = await User.countDocuments({ role: "Agent", isActive: true });
     const inactiveAgents = await User.countDocuments({ role: "Agent", isActive: false });
 
-    // 2. Agent-wise policies issued
     const agentPolicies = await Policy.aggregate([
       {
         $group: {
@@ -29,7 +27,6 @@ export class AnalyticsService {
       })
     );
 
-    // 3. Monthly trends for the last 6 months
     const sixMonthsAgo = new Date();
     sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5);
     sixMonthsAgo.setDate(1);
@@ -60,7 +57,7 @@ export class AnalyticsService {
     ]);
 
     const monthNames = [
-      "Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+      "Jan", "Feb", "Mar", "Apr", "May", "Jun",
       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
     ];
 
@@ -73,10 +70,8 @@ export class AnalyticsService {
       };
     });
 
-    // Fallback: If no monthly trends data exists, return empty or dummy structure
-    // so charts don't crash.
-    const finalMonthlyTrends = monthlyTrends.length > 0 
-      ? monthlyTrends 
+    const finalMonthlyTrends = monthlyTrends.length > 0
+      ? monthlyTrends
       : [{ month: monthNames[new Date().getMonth()], count: 0, totalPremium: 0 }];
 
     return {

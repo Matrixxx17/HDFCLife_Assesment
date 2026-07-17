@@ -31,12 +31,12 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-[#080c16] relative flex flex-col items-center justify-center p-6 overflow-hidden">
-      {/* Background radial gradients for depth */}
+
       <div className="absolute top-[-20%] left-[-20%] w-[60%] h-[60%] rounded-full bg-teal-900/10 blur-[120px]" />
       <div className="absolute bottom-[-20%] right-[-20%] w-[60%] h-[60%] rounded-full bg-blue-900/10 blur-[120px]" />
 
       <div className="w-full max-w-4xl z-10 flex flex-col items-center">
-        {/* Hero title container */}
+
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -57,9 +57,8 @@ export default function LandingPage() {
           </p>
         </motion.div>
 
-        {/* Portals grid selector */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl">
-          {/* Admin card option */}
+
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -84,7 +83,7 @@ export default function LandingPage() {
             </div>
           </motion.div>
 
-          {/* Agent card option */}
+
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -110,14 +109,12 @@ export default function LandingPage() {
           </motion.div>
         </div>
 
-        {/* Security watermark footer */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mt-16 text-xs text-slate-500 tracking-wider text-center"
         >
-          SECURE 256-BIT ENCRYPTION &middot; HTTPONLY COOKIE SESSIONS
         </motion.div>
       </div>
     </div>

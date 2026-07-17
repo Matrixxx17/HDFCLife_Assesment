@@ -9,7 +9,6 @@ export function maskPAN(pan: string): string {
   if (!pan) return "";
   const cleaned = pan.trim().toUpperCase();
   if (cleaned.length !== 10) return pan;
-  // ABCDE1234F -> ABCXX12XXF
   const p1 = cleaned.slice(0, 3);
   const p2 = cleaned.slice(5, 7);
   const p3 = cleaned.slice(9);
@@ -25,14 +24,10 @@ export function maskMobile(mobile: string): string {
 
 export function serializeCustomer(customer: any): any {
   if (!customer) return customer;
-  
-  // If it's a Mongoose document, convert to object
   const doc = typeof customer.toObject === "function" ? customer.toObject() : { ...customer };
-  
   if (doc.aadhaar) doc.aadhaar = maskAadhaar(doc.aadhaar);
   if (doc.pan) doc.pan = maskPAN(doc.pan);
   if (doc.mobile) doc.mobile = maskMobile(doc.mobile);
-  
   return doc;
 }
 
@@ -42,16 +37,12 @@ export function serializeCustomers(customers: any[]): any[] {
 
 export function serializePolicy(policy: any): any {
   if (!policy) return policy;
-  
   const doc = typeof policy.toObject === "function" ? policy.toObject() : { ...policy };
-  
   if (doc.customerId) {
     if (typeof doc.customerId === "object" && doc.customerId !== null && !doc.customerId._id) {
-      // It's a populated customer object
       doc.customerId = serializeCustomer(doc.customerId);
     }
   }
-  
   return doc;
 }
 
