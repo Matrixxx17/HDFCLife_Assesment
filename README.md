@@ -165,44 +165,6 @@ Uses `mongodb-memory-server` so no external database is needed.
 
 ---
 
-## Deployment
-
-### Backend → Render
-
-| Setting         | Value                                  |
-|-----------------|----------------------------------------|
-| Build command   | `npm install && npm run build:backend` |
-| Start command   | `node backend/dist/server.js`          |
-| Health check    | `/healthz`                             |
-
-Required env vars on Render:
-
-```ini
-NODE_ENV=production
-MONGODB_URI=<your Atlas connection string>
-JWT_SECRET=<strong random secret>
-FRONTEND_URL=https://hdfcinsura.vercel.app
-```
-
-### Frontend → Vercel
-
-| Setting         | Value                    |
-|-----------------|--------------------------|
-| Root directory  | `frontend`               |
-| Framework       | Next.js                  |
-| Install command | `npm install --prefix=..`|
-
-Required env vars on Vercel:
-
-```ini
-NEXT_PUBLIC_API_URL=/api
-BACKEND_API_URL=https://<your-render-service>.onrender.com
-```
-
-The Next.js rewrite rules in `next.config.js` proxy all `/api/*` requests to the Render backend, making auth cookies first-party and avoiding SameSite issues on mobile browsers.
-
----
-
 ## API Reference
 
 ### Auth
